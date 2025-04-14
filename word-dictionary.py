@@ -10,10 +10,8 @@ streamlit run word-dictionary.py
 import streamlit as st
 import requests
 
-OLLAMA_URL = "https://ollama-projects-fftkah2k8y38ht6nappte2n.streamlit.app/" + "/api/generate"
+OLLAMA_URL = "https://ollama-projects-fftkah2k8y38ht6nappte2n.streamlit.app/" + "/api/generate"  # Replace with your actual Streamlit app URL
 MODEL_NAME = "mistral"
-# MODEL_NAME = "mistral:7b-instruct"  # Use a model that respects prompt constraints
-
 
 def query_ollama(word):
     prompt = (
@@ -32,11 +30,17 @@ def query_ollama(word):
 
     try:
         response = requests.post(OLLAMA_URL, json=payload)
-        response.raise_for_status() # does nothing if the response code is 200
-        data = response.json()
-        return data.get("response", "No response received.")
+        if response.status_code == 200:  # Check that the response is successful
+            data = response.json()
+            if 'error' in data.keys():  # Check for error messages
+                return data['error']
+            else:
+                return data.get("response", "No response received.")
+        else:
+            return f"⚠️ Error querying model: {response.reason}"
     except Exception as e:
         return f"⚠️ Error querying model: {e}"
+
 
 
 # Streamlit UI
