@@ -10,7 +10,7 @@ streamlit run word-dictionary.py
 import streamlit as st
 import requests
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = "https://ollama-projects-fftkah2k8y38ht6nappte2n.streamlit.app/" + "/api/generate"
 MODEL_NAME = "mistral"
 # MODEL_NAME = "mistral:7b-instruct"  # Use a model that respects prompt constraints
 
