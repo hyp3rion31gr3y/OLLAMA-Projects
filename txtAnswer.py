@@ -1,3 +1,7 @@
+'''
+A streamlit web app that takes txt file as an input and provides answers to the relevant questions asked by the user based on that txt file.
+'''
+
 import streamlit as st
 import ollama
 

@@ -10,8 +10,9 @@ streamlit run word-dictionary.py
 import streamlit as st
 import requests
 
-OLLAMA_URL = "http://3.109.155.162:11434/api/generate"  # Replace with your actual Streamlit app URL
-MODEL_NAME = "mistral"
+OLLAMA_URL = "http://localhost:11434/api/generate"  # Replace with your actual Streamlit app URL
+# MODEL_NAME = "mistral"
+MODEL_NAME = "phi"
 
 def query_ollama(word):
     prompt = (
